@@ -25,5 +25,5 @@ COPY bot.py ./
 # Expose port
 EXPOSE 7860
 
-# Set the command
-CMD ["uv", "run", "bot.py"]
+# Set the command with explicit host and port
+CMD ["uv", "run", "bot.py", "--host", "0.0.0.0", "--port", "7860"]
