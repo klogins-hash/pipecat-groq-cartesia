@@ -149,6 +149,11 @@ async def bot(runner_args: RunnerArguments):
 
 
 if __name__ == "__main__":
+    import os
     from pipecat.runner.run import main
-
+    
+    # Set default host and port for cloud deployment
+    os.environ.setdefault("HOST", "0.0.0.0")
+    os.environ.setdefault("PORT", "7860")
+    
     main()
