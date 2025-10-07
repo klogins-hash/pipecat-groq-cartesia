@@ -14,7 +14,6 @@ Build and deploy your first voice AI bot in under 10 minutes. Develop locally, t
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) package manager installed
 
 #### AI Service API keys
-
 You'll need API keys from two services:
 
 - [Groq](https://console.groq.com/) for ultra-fast LLM inference
@@ -22,15 +21,13 @@ You'll need API keys from two services:
 
 > 💡 **Tip**: Sign up for both services now. You'll need them for both local and cloud deployment.
 
-### Setup
-
-Navigate to the quickstart directory and set up your environment.
+Your setup follows the exact same architecture as the official quickstart but with **premium services** (Groq + Cartesia). Everything should work perfectly:
 
 1. Clone this repository
 
    ```bash
    git clone https://github.com/pipecat-ai/pipecat-quickstart.git
-   cd pipecat-quickstart
+{{ ... }}
    ```
 
 2. Configure your API keys:
