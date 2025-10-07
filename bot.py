@@ -10,8 +10,8 @@ The example runs a simple voice AI bot that you can connect to using your
 browser and speak with it. You can also deploy this bot to Pipecat Cloud.
 
 Required AI services:
-- Deepgram (Speech-to-Text)
-- OpenAI (LLM)
+- Cartesia (Speech-to-Text)
+- Groq (LLM)
 - Cartesia (Text-to-Speech)
 
 Run the bot using::
@@ -48,9 +48,9 @@ from pipecat.processors.aggregators.llm_response_universal import LLMContextAggr
 from pipecat.processors.frameworks.rtvi import RTVIConfig, RTVIObserver, RTVIProcessor
 from pipecat.runner.types import RunnerArguments
 from pipecat.runner.utils import create_transport
+from pipecat.services.cartesia.stt import CartesiaSTTService
 from pipecat.services.cartesia.tts import CartesiaTTSService
-from pipecat.services.deepgram.stt import DeepgramSTTService
-from pipecat.services.openai.llm import OpenAILLMService
+from pipecat.services.groq.llm import GroqLLMService
 from pipecat.transports.base_transport import BaseTransport, TransportParams
 from pipecat.transports.daily.transport import DailyParams
 
@@ -62,14 +62,17 @@ load_dotenv(override=True)
 async def run_bot(transport: BaseTransport, runner_args: RunnerArguments):
     logger.info(f"Starting bot")
 
-    stt = DeepgramSTTService(api_key=os.getenv("DEEPGRAM_API_KEY"))
+    stt = CartesiaSTTService(api_key=os.getenv("CARTESIA_API_KEY"))
 
     tts = CartesiaTTSService(
         api_key=os.getenv("CARTESIA_API_KEY"),
         voice_id="71a7ad14-091c-4e8e-a314-022ece01c121",  # British Reading Lady
     )
 
-    llm = OpenAILLMService(api_key=os.getenv("OPENAI_API_KEY"))
+    llm = GroqLLMService(
+        api_key=os.getenv("GROQ_API_KEY"),
+        model="llama-3.3-70b-versatile"  # High-quality model, change to "llama-3.1-8b-instant" for faster responses
+    )
 
     messages = [
         {
